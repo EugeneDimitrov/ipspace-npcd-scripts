@@ -6,20 +6,30 @@
 
 SITE_DOMAIN_NAME="domain.local"
 
-echo "Updating System..."
+echo #######################################
+echo # Updating System
+echo #######################################
 sudo apt-get update -y && sudo apt-get upgrade -y
 
-echo "Installing Git, Nginx..."
+echo #######################################
+echo # Installing Git, Nginx
+echo #######################################
 sudo apt install git nginx -y
 
-echo "Configure firewall rules..."
+echo #######################################
+echo # Configure firewall rules
+echo #######################################
 sudo ufw allow 'Nginx HTTP'
 sudo ufw allow 'OpenSSH'
 
-echo "Enable firewall..."
+echo #######################################
+echo # Enable firewall
+echo #######################################
 sudo ufw --force enable
 
-echo "Create server block"
+echo #######################################
+echo # Create server block
+echo #######################################
 sudo mkdir -p /var/www/$SITE_DOMAIN_NAME/html
 sudo chown -R $USER:$USER /var/www/$SITE_DOMAIN_NAME/html
 sudo chmod -R 755 /var/www/$SITE_DOMAIN_NAME
@@ -29,5 +39,7 @@ sudo cp $SITE_DOMAIN_NAME /etc/nginx/sites-available/
 sudo ln -s /etc/nginx/sites-available/$SITE_DOMAIN_NAME /etc/nginx/sites-enabled/
 sudo cp nginx.conf /etc/nginx/
 
-echo "Restart Nginx service"
+echo #######################################
+echo # Restart Nginx service
+echo #######################################
 sudo systemctl restart nginx
