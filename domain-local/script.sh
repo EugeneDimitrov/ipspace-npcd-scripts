@@ -43,3 +43,8 @@ echo #######################################
 echo # Restart Nginx service
 echo #######################################
 sudo systemctl restart nginx
+
+echo #######################################
+echo # Rebooting system
+echo #######################################
+sudo shutdown -r now
