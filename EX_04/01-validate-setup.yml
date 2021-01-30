@@ -1,0 +1,17 @@
+# This playbook was created using Ansible 2.9.6
+---
+- hosts: web
+
+  tasks:
+   - name: Test web application
+     uri:
+       url: http://{{ ansible_host }}
+   
+- hosts: db
+       
+  tasks:
+   - name: Test that private network has no Internet access
+     shell: wget -T 3 -q --spider http://www.google.com
+     register: result
+     failed_when: result.rc == 0
+     changed_when: false
