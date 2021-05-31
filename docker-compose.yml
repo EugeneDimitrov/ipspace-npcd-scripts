@@ -32,6 +32,10 @@ services:
         volumes:
             - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
                    
+        ports:
+            - 57000:57000
+        depends_on:
+            - influxdb           
 volumes:
   influxdb-lib:
     external: false
